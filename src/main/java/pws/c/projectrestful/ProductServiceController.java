@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import pws.projectcontroller.Product;
 
 /**
  *
@@ -43,7 +44,7 @@ public class ProductServiceController {
     
     //put
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Product product{
+    public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Product product){
         
         if(!productRepo.containsKey(id)){
             return new ResponseEntity<>("Product Not Found", HttpStatus.NOT_FOUND);
