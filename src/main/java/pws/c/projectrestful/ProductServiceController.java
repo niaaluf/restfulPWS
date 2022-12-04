@@ -68,5 +68,9 @@ public class ProductServiceController {
         }
     }
     
+    @RequestMapping(value = "/products")
+    public ResponseEntity<Object> getProduct(){
+        return new ResponseEntity<>(productRepo.values(), HttpStatus.OK);
+    }
     
 }
