@@ -46,9 +46,14 @@ public class ProductServiceController {
     @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateProduct(@PathVariable("id") String id, @RequestBody Product product){
         
+        // Menambahkan kondisi if and else
+        
+        //Jika product yang ingin di edit tidak memiliki id maka data tidak dapat di update
         if(!productRepo.containsKey(id)){
             return new ResponseEntity<>("Product Not Found", HttpStatus.NOT_FOUND);
         }
+        
+        //Jika product memiliki id maka data tersebut dapat di update
         else{
             productRepo.remove(id);
             product.setId(id);
@@ -60,9 +65,15 @@ public class ProductServiceController {
     //post
     @RequestMapping(value = "/products", method = RequestMethod.POST) 
     public ResponseEntity<Object> createProduct(@RequestBody Product product){
+       
+        // Menambahkan kondisi if and else
+        
+        // Jika menambahkan product dengan id yang sama  
         if(productRepo.containsKey(product.getId())){
             return new ResponseEntity<>("Id product is already exist, please check again", HttpStatus.OK);
         }
+        
+        // Jika id belum pernah terbuat maka dapat membuat data baru
         else{
             productRepo.put(product.getId(), product);
             return new ResponseEntity<>("Product os created successfully", HttpStatus.CREATED);
